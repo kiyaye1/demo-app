@@ -15,7 +15,7 @@ pipeline {
         stage('Cloning Git Repo') {
             steps {
                 script {
-                    sh 'git clone "https://github.com/neerajbalodi/demo-app.git"'
+                    sh 'git clone "https://github.com/kiyaye1/demo-app.git"'
                 }
             }
         }
