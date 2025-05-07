@@ -4,6 +4,9 @@ FROM maven:3.8.7-eclipse-temurin-17 AS build
 # Set the working directory inside the container
 WORKDIR /app
 
+# Create logs directory
+RUN mkdir /app/logs
+
 # Copy the pom.xml and download dependencies (layered to optimize build cache)
 COPY pom.xml .
 
@@ -30,4 +33,4 @@ COPY --from=build /app/target/myapp-0.0.1-SNAPSHOT.jar  /app/myapp-0.0.1-SNAPSHO
 EXPOSE 8081
 
 # Run the application
-CMD ["java", "-jar", "myapp-0.0.1-SNAPSHOT.jar"]
+CMD ["sh" "-c" "java -jar myapp-0.0.1-SNAPSHOT.jar > /app/logs/app.log 2>&1"]
